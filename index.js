@@ -6,7 +6,7 @@ const port = process.env.PORT;
 
 
 route(app);
-
+app.use(express.static('public'));//sử dụng file static
 
 app.set('view engine', 'pug');
 app.set('views', './views');
