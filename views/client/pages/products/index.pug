@@ -1,6 +1,20 @@
 extends ../../layouts/default
-
+include ../../mixins/box-head
 
 block main 
-    h1 Product Management
+    .container.my-3
+        .row
+            .col-12
+                +box-head('Danh sách sản phẩm')
+
+        .row
+            .col-3.mb-3
+                .product-item
+                    .inner-image
+                        img(src="https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/thumbnail.png", alt="Iphone 9")
+                    .inner-content
+                        h3.inner-title Iphone 9
+                        .inner-price 10.000.000đ
+                        .inner-price-old 12.000.000đ
+                        .inner-discount -20%
 
