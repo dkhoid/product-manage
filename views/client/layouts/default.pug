@@ -2,12 +2,13 @@ doctype html
 html
     head
         title #{title}
-        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css", rel="stylesheet")
+        meta(charset='UTF-8')
         script(src='/js/script.js')
         link(rel='stylesheet', href='/css/style.css')
+        //first "/" direct to public folder
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
     body
         include ../partials/header
         block main
         include ../partials/footer
-        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js", rel="stylesheet")
-        link(href="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js", rel="stylesheet")
