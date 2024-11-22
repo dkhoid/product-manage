@@ -1,5 +1,7 @@
-extends ../../layouts/default.pug
-
+extends ../../layouts/default
+include  ../../mixins/filterStatus
+include ../../mixins/search
+include ../../mixins/pagination
 
 block main
     h3 Danh sách sản phẩm
@@ -7,16 +9,10 @@ block main
         .card-header Bộ lọc và tìm kiếm
         .card-body
             .col-6
-                each item in filterStatus
-                    button(class=`btn btn-sm ml-1 btn-outline-success ${item.class}` button-status=item.status) #{item.name}
+                +filterStatus(filterStatus)
 
             .col-6
-                form(id='form-search')
-                    .input-group
-                        input.form-control(type='text' name='keyword' placeholder='Tìm kiếm sản phẩm' value=keyword)
-                        .input-group-append
-                            button.btn.btn-success(type='submit') Tìm kiếm
-
+                +search(keyword)
 
 
     table.table.table-hover.table-sm
@@ -48,3 +44,4 @@ block main
                         a.btn.btn-danger.btn-sm.ml-1(href=`/admin/products/${product._id}/delete`) Xóa
 
 
+    +pagination(Pagination)

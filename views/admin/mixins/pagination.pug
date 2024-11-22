@@ -1,0 +1,19 @@
+mixin pagination(Pagination)
+    nav
+        ul(class='pagination')
+            if(Pagination.totalPage > 1 && Pagination.currentPage > 1)
+                li(class='page-item')
+                    button(class=`page-link` type='button' aria-label='Previous' button-pagination=Pagination.currentPage - 1)
+                        span(aria-hidden='true') &laquo;
+                        span.sr-only Previous
+
+            -for (let i = 1; i <= Pagination.totalPage; i++)
+                   li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
+                       button(class='page-link' type='button' button-pagination=i )= i
+
+
+            if(Pagination.totalPage > 1 && Pagination.currentPage < Pagination.totalPage)
+                li(class='page-item ')
+                    button(class=`page-link` type='button' aria-label='Next' button-pagination=Pagination.currentPage + 1)
+                        span(aria-hidden='true') &raquo;
+                        span.sr-only Next
