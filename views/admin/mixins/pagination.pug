@@ -8,8 +8,10 @@ mixin pagination(Pagination)
                         span.sr-only Previous
 
             -for (let i = 1; i <= Pagination.totalPage; i++)
-                   li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
-                       button(class='page-link' type='button' button-pagination=i )= i
+                li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
+                    button(class='page-link' type='button' button-pagination=i)= i
+
+
 
 
             if(Pagination.totalPage > 1 && Pagination.currentPage < Pagination.totalPage)

@@ -9,11 +9,13 @@ const systemConfig = require('./config/system');
 const route = require('./routes/client/index.route');
 const adminRoute = require('./routes/admin/index.route');
 
+const methodOverride = require('method-override');
+
 const app = express();
 const port = process.env.PORT;
 
 
-
+app.use(methodOverride('_method'));//sử dụng method-override
 
 database.connect()//kết nối database
 

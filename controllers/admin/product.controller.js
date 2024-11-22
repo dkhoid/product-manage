@@ -5,9 +5,13 @@ const paginationHelper = require('../../helpers/pagination');
 
 //{get} /admin/products
 module.exports.index = async (req, res) => {
-    //find all products
     let find = {delete: false}
+
+    //find all products
     const filterStatus = filterStatusHelper(req.query);
+    if (req.query.status) {
+        find.status = req.query.status;
+    }
 
     //search
     const objectSearch = searchHelper(req.query);
@@ -35,3 +39,10 @@ module.exports.index = async (req, res) => {
 }
 
 
+module.exports. changeStatus = async (req, res) => {
+    const id = req.params.id;
+    const status = req.params.status;
+
+    await Product.updateOne({_id: id}, {status: status});
+    res.redirect('/admin/products');
+}
