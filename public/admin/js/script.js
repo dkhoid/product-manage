@@ -97,7 +97,6 @@ if(formChangeMulti){
         const inputChecked = checkboxmulti.querySelectorAll("input[name='id']:checked");
         if(inputChecked.length === 0){
             alert('Vui lòng chọn ít nhất 1 sản phẩm');
-            return;
         }
         else{
             let ids = [];
