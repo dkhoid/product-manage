@@ -22,7 +22,7 @@ module.exports.index = async (req, res) => {
     //pagination
     const countProducts = await Product.countDocuments(find);
     let objectPagination = {
-        limitItem: 16,
+        limitItem: 8,
         currentPage: 1,
         countProducts: countProducts
     }
@@ -39,10 +39,25 @@ module.exports.index = async (req, res) => {
 }
 
 
-module.exports. changeStatus = async (req, res) => {
+module.exports.changeStatus = async (req, res) => {
     const id = req.params.id;
     const status = req.params.status;
 
     await Product.updateOne({_id: id}, {status: status});
-    res.redirect('/admin/products');
+    res.redirect(req.get("Referer") || "/");
+
+}
+
+module.exports.changeMulti = async (req, res) => {
+    const type = req.body.type;
+    const ids = req.body.ids.split(',');
+    if(type==='Active'){
+        await Product.updateMany({_id: {$in: ids}}, {status: 'Active'});
+    }
+    else{
+        await Product.updateMany({_id: {$in: ids}}, {status: 'Inactive'});
+    }
+
+    res.redirect(req.get("Referer") || "/");
+
 }

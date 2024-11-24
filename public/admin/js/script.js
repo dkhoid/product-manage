@@ -24,7 +24,7 @@ if (buttonStatus.length > 0) {
 
 
 //form search
-const formSearch = document.querySelector('[form-search]');
+const formSearch = document.querySelector('#form-search');
 if (formSearch) {
     let url = new URL(window.location.href);
     formSearch.addEventListener('submit', (e) => {
@@ -57,3 +57,58 @@ if (buttonPagination.length > 0) {
     })
 }
 
+
+//checkbox multi
+const checkboxMulti = document.querySelector('table[checkbox-multi]');
+if (checkboxMulti) {
+    const inputCheckAll = checkboxMulti.querySelector("input[name='check-all']");
+    const inputCheckId = checkboxMulti.querySelectorAll("input[name='id']");
+    inputCheckAll.addEventListener('click', () => {
+        if (inputCheckAll.checked) {
+            inputCheckId.forEach(input => {
+                input.checked = true;
+
+            })
+        } else {
+            inputCheckId.forEach(input => {
+                input.checked = false;
+            });
+        }
+    });
+    inputCheckId.forEach(input => {
+        input.addEventListener('click', () => {
+            const countChecked = checkboxMulti.querySelectorAll("input[name='id']:checked").length;
+            if (countChecked === inputCheckId.length) {
+                inputCheckAll.checked = true;
+            } else {
+                inputCheckAll.checked = false;
+            }
+        })
+    })
+}
+
+//change status multi
+const formChangeMulti = document.querySelector('#form-change-multi-status');
+if(formChangeMulti){
+    formChangeMulti.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const checkboxmulti = document.querySelector('table[checkbox-multi]');
+        const inputChecked = checkboxmulti.querySelectorAll("input[name='id']:checked");
+        if(inputChecked.length === 0){
+            alert('Vui lòng chọn ít nhất 1 sản phẩm');
+            return;
+        }
+        else{
+            let ids = [];
+            const inputIds = document.querySelector('input[name="ids"]');
+            inputChecked.forEach(input => {
+                const id = input.value;
+                ids.push(id);
+            });
+            console.log(ids.join(','));
+            inputIds.value = ids.join(',');
+            formChangeMulti.submit();
+        }
+    });
+}

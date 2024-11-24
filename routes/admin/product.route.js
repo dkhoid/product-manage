@@ -9,4 +9,6 @@ router.get('/', controler.index);
 //http://localhost:3000/admin/controller/change-status/:id
 router.patch('/change-status/:status/:id', controler.changeStatus);//dynamic routing
 
+router.patch('/change-multi', controler.changeMulti);
+
 module.exports = router;
