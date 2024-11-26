@@ -31,12 +31,12 @@ adminRoute(app);
 //app local variable
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
-app.use(express.static(${__dirname}'public'));//sử dụng file static
+app.use(express.static('public'));//sử dụng file static
 
 app.set('view engine', 'pug');
-app.set('views', '{__dirname/views');
+app.set('views', './views');
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
 });

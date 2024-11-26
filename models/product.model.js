@@ -8,18 +8,20 @@ const productsSchema = new mongoose.Schema({
     rating: Number,
     stock: Number,
     tags: [String],
-    availabilityStatus: String,
     images: [String],
     thumbnail: String,
     reviews: {
         type: Map,
         of: new mongoose.Schema({
             rating: Number,
-            comment: String
+            comment: String,
+            date:Date,
+            reviewerName:String
         })
     },
     status: String,
-    delete: Boolean
+    delete: Boolean,
+    deletedAt: Date
 });
 const Product = mongoose.model('Product', productsSchema, 'Products_data');
 

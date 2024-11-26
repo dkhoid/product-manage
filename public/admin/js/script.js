@@ -89,16 +89,20 @@ if (checkboxMulti) {
 
 //change status multi
 const formChangeMulti = document.querySelector('#form-change-multi-status');
-if(formChangeMulti){
+if (formChangeMulti) {
     formChangeMulti.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const checkboxmulti = document.querySelector('table[checkbox-multi]');
         const inputChecked = checkboxmulti.querySelectorAll("input[name='id']:checked");
-        if(inputChecked.length === 0){
+        if (inputChecked.length === 0) {
             alert('Vui lòng chọn ít nhất 1 sản phẩm');
         }
-        else{
+        else {
+            const checkmultiDelete = e.target.elements.type.value === 'Delete-all';
+            if(checkmultiDelete){
+                if(!confirm('Bạn có chắc chắn muốn xóa những sản phẩm này không?'))
+                    return;
+            }
             let ids = [];
             const inputIds = document.querySelector('input[name="ids"]');
             inputChecked.forEach(input => {
@@ -111,3 +115,7 @@ if(formChangeMulti){
         }
     });
 }
+
+
+//delete multi
+const checkmulti = document.querySelector('#check-multi');

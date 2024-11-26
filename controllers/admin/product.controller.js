@@ -22,7 +22,7 @@ module.exports.index = async (req, res) => {
     //pagination
     const countProducts = await Product.countDocuments(find);
     let objectPagination = {
-        limitItem: 8,
+        limitItem: 10,
         currentPage: 1,
         countProducts: countProducts
     }
@@ -54,10 +54,46 @@ module.exports.changeMulti = async (req, res) => {
     if(type==='Active'){
         await Product.updateMany({_id: {$in: ids}}, {status: 'Active'});
     }
-    else{
+    else if(type==='Inactive'){
         await Product.updateMany({_id: {$in: ids}}, {status: 'Inactive'});
+    }
+    else if(type==='Delete-all'){
+        await Product.updateMany({_id: {$in: ids}}, {delete: true, deleteAt: new Date()});
     }
 
     res.redirect(req.get("Referer") || "/");
-
 }
+
+module.exports.delete = async (req, res) => {
+    const id = req.params.id;
+    await Product.updateOne(
+        {_id: id},
+        {delete: true, deleteAt: new Date()}
+    );
+    res.redirect(req.get("Referer") || "/");
+}
+
+
+
+
+
+
+
+/*
+different way to access data from the http request in Express.js
+
+(*)req.params: This property is an object containing properties mapped to the named route “parameters”. For example, if you have the route /user/:name, then the “name” property is available as req.params.name. This object defaults to {}.
+(*)req.query: This property is an object containing a property for each query string parameter in the route. If there is no query string, it is the empty object, {}.
+(*)req.body: This property is an object containing the parsed request body. This feature is provided by the bodyParser() middleware, though other body parsing middleware may follow this convention as well. This property defaults to {} when bodyParser() is used.
+req.cookies: This property is an object that contains cookies sent by the request. If the request contains no cookies, it defaults to {}.
+req.headers: This property is an object containing the headers of the request. The headers object is keyed by the header field names (in lowercase), and the values are the respective header values.
+req.path: This property contains the path part of the request URL.
+req.protocol: This property is the request protocol string, either http or (for TLS/SSL requests) https.
+req.secure: This property is a Boolean value that is true if a TLS connection is established.
+...
+
+*/
+
+
+
+
