@@ -8,15 +8,16 @@ block main
                 +box-head('Danh sách sản phẩm')
 
         .row
-            each item in products
+            each item, index in products
+
                 .col-3.mb-3
                     .product-item
                         .inner-image
-                            img(src=item.images[0], alt=item.title)
+                            img(src=item.thumbnail, alt=item.title, loading="lazy")
                         .inner-content
+                            h5= index+1
                             h5.product-title #{item.title}
-                            p.product-price #{item.price}
-                            p.product-newPrice #{item.newPrice}
-                            p.product-discount  #{item.discountPercentage}%
+                            p.product-price #{item.price}$
+                            p.product-discount  #{(item.price - item.price * item.discountPercentage / 100).toFixed(2)}$
 
 

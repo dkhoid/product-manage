@@ -32,11 +32,12 @@
     height: calc(100% - 56px);
 }
 .body .main {
-    margin: 65px 15px 15px;
+    margin: 100px 15px 15px;
     position: relative;
     left: 150px;
     width: calc(100% - 120px);
 }
+
 /*End Body*/
 
 /*Sidebar*/
@@ -67,4 +68,51 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+}
+
+div.message{
+    position: fixed;
+    right: 15px;
+    top: 70px;
+    z-index: 999;
+}
+[show-alert]{
+    position: fixed;
+    right: 15px;
+    top: 70px;
+    z-index: 999;
+}
+
+[show-alert].alert-hidden{
+    animation-name:alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+@keyframes alert-hidden {
+    from{
+        right:15px;
+    }
+    to{
+        right:-100%;
+        display: none;
+    }
+}
+
+[show-alert] [close-alert]{
+    padding:0;
+    margin-left: 4px;
+    background: white;
+    display:inline-block;
+    width:24px;
+    height:24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 70%;
+}
+
+
+#form-create-product{
+    width:inherit;
 }

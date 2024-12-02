@@ -1,0 +1,51 @@
+extends ../../layouts/default
+
+block main
+    h1(class='mb-4') Thêm mới sản phẩm
+    form(action=`${prefixAdmin}/products/create`
+        id = "form-create-product"
+        method="POST"
+    )
+        div(class="from-group")
+            label(for="title") Tên sản phẩm
+            input(type="text" class="form-control" id="title" name="title" required)
+
+        div(class="from-group")
+            label(for="desc") Mô tả
+            textarea(class="form-control" id="desc" name="description" rows="5")
+
+        div(class="from-group")
+            label(for="price") Giá
+            input(type="number" class="form-control" id="price" name="price" value="0" min=0 required)
+
+        div(class="from-group")
+            label(for="discount") % Giảm giá
+            input(type="number" class="form-control" id="discount" name="discountPercentage" value="0" min=0)
+
+        div(class="from-group")
+            label(for="stock") Số lượng
+            input(type="number" class="form-control" id="stock" name="stock" value="0" min=0 required)
+
+        div(class="from-group")
+            label(for="thumbnail") Hình ảnh
+            input(type="text" class="form-control" id="thumbnail" name="thumbnail")
+
+        //div(class="from-group")
+        //    label(for="category") Danh mục
+        //    select(class="form-control" id="category" name="categoryId")
+        //        each category in categories
+        //            option(value=category._id)= category.title
+
+        div(class='form-group form-check form-check-inline')
+            input(type='radio' class='form-check-input' id='statusActive' name='status' value='Active' checked)
+            label(for='statusActive' class='form-check-label') Hoạt động
+
+        div(class='form-group form-check form-check-inline')
+            input(type='radio' class='form-check-input' id='statusInactive' name='status' value='Inactive')
+            label(for='statusInactive' class='form-check-label') Không hoạt động
+
+        div(class="from-group")
+            button(type="submit" class="btn btn-primary") Thêm mới
+
+        //script(src='/admin/js/products/create.js')
+

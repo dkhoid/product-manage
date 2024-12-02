@@ -117,5 +117,13 @@ if (formChangeMulti) {
 }
 
 
-//delete multi
-const checkmulti = document.querySelector('#check-multi');
+//show alert
+const showAlert = document.querySelector('[show-alert]');
+if(showAlert){
+    const timeout = parseInt(showAlert.getAttribute('data-timeout'),10);
+    const closeAlert = showAlert.querySelector("[close-alert]");
+    const hideAlert =() => showAlert.classList.add('alert-hidden');
+    setTimeout(hideAlert, timeout);
+    closeAlert.addEventListener('click',hideAlert);
+}
+
