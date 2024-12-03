@@ -106,26 +106,29 @@ module.exports.create = (req, res) => {
 // [POST] Create a product
 module.exports.createPost = async (req, res) => {
     try {
-        //actully, we don't need to initialize the value of missing fields,  because we can (now is not) default value in the schema
-        req.body.price = parseInt(req.body.price);
-        req.body.discountPercentage = parseInt(req.body.discountPercentage);
-        req.body.stock = parseInt(req.body.stock);
+        console.log(req.file);
+        req.body.price = parseInt(req.body.price, 10) || 0;
+        req.body.discountPercentage = parseInt(req.body.discountPercentage, 10) || 0;
+        req.body.stock = parseInt(req.body.stock, 10) || 1;
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+
         req.body.category = req.body.category || 'Uncategorized';
-        req.body.tags = req.body.tag || [];
+        req.body.tags = req.body.tags || [];
         req.body.delete = false;
         req.body.reviews = [];
         req.body.images = req.body.images || [];
         req.body.rating = 0;
+
         const product = new Product(req.body);
         await product.save();
+        console.log('Product created:', product);
         req.flash('success', 'Tạo sản phẩm thành công');
         res.redirect(`${systemConfig.prefixAdmin}/products`);
     } catch (error) {
         console.error('Error creating product:', error);
         res.status(500).send('Internal Server Error');
     }
-
-}
+};
 
 
 

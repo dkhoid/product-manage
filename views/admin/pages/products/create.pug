@@ -4,7 +4,8 @@ block main
     h1(class='mb-4') Thêm mới sản phẩm
     form(action=`${prefixAdmin}/products/create`
         id = "form-create-product"
-        method="POST"
+        method="POST",
+        enctype="multipart/form-data"
     )
         div(class="from-group")
             label(for="title") Tên sản phẩm
@@ -28,7 +29,7 @@ block main
 
         div(class="from-group")
             label(for="thumbnail") Hình ảnh
-            input(type="text" class="form-control" id="thumbnail" name="thumbnail")
+            input(type="file" class="form-control-file" id="thumbnail" name="thumbnail" accept="image/*")
 
         //div(class="from-group")
         //    label(for="category") Danh mục
