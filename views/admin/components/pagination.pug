@@ -8,8 +8,12 @@ mixin pagination(Pagination)
                         span.sr-only Previous
 
             -for (let i = 1; i <= Pagination.totalPage; i++)
-                li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
-                    button(class='page-link' type='button' button-pagination=i)= i
+                - if (i === 1 || i === 2 || i === Pagination.totalPage || i === Pagination.totalPage - 1 || (i >= Pagination.currentPage - 1 && i <= Pagination.currentPage + 1))
+                    li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
+                        button(class='page-link' type='button' button-pagination=i)= i
+                - else if (i === 3 || i === Pagination.totalPage - 2)
+                    li(class='page-item')
+                        button(class='page-link' type='button' disabled)= '...'
 
 
 
@@ -19,3 +23,5 @@ mixin pagination(Pagination)
                     button(class=`page-link` type='button' aria-label='Next' button-pagination=Pagination.currentPage + 1)
                         span(aria-hidden='true') &raquo;
                         span.sr-only Next
+
+

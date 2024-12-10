@@ -31,10 +31,10 @@ app.set('views', './views');
 
 
 // Routes
-const route = require('./routes/client/index.route');
-const adminRoute = require('./routes/admin/index.route');
-route(app); // Load client routes
-adminRoute(app); // Load admin routes
+const clientRoutes = require('./routes/client/index.route');
+const adminRoutes = require('./routes/admin/index.route');
+clientRoutes(app); // Load client routes
+adminRoutes(app); // Load admin routes
 
 // Start the server
 const port = process.env.PORT || 3000;

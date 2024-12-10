@@ -1,9 +1,9 @@
 extends ../../layouts/default
-include  ../../mixins/filterStatus
-include ../../mixins/search
-include ../../mixins/pagination
-include ../../mixins/form-change-multi
-include ../../mixins/alert-success
+include  ../../components/filterStatus
+include ../../components/search
+include ../../components/pagination
+include ../../components/form-change-multi
+include ../../components/alert
 
 block main
 
@@ -67,7 +67,7 @@ block main
                                             button-change-status
                                         ) Ngừng hoạt động
                                 td
-                                    a.btn.btn-warning.btn-sm(href=`/admin/products/${product._id}/edit`) Sửa
+                                    a.btn.btn-warning.btn-sm(href=`/admin/products/edit/${product._id}`) Sửa
                                     a.btn.btn-danger.btn-sm.ml-1(
                                         button-delete
                                         data-id = product.id

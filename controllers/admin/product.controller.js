@@ -31,7 +31,8 @@ module.exports.index = async (req, res) => {
         // Fetch products with applied filters and pagination
         const products = await Product.find(filter)
             .limit(pagination.limitItem)
-            .skip(pagination.skipItem);
+            .skip(pagination.skipItem)
+            .sort({createdAt: -1});     //sort by createdAt in descending order
 
         // Render products page
         res.render('admin/pages/products/index', {
@@ -106,32 +107,85 @@ module.exports.create = (req, res) => {
 // [POST] Create a product
 module.exports.createPost = async (req, res) => {
     try {
-        console.log(req.file);
+        if (!req.body.title) {
+            req.flash('error', 'Vui lòng nhập tên sản phẩm');
+            returnres.redirect(req.get('Referer') || '/');
+        }
+
         req.body.price = parseInt(req.body.price, 10) || 0;
         req.body.discountPercentage = parseInt(req.body.discountPercentage, 10) || 0;
         req.body.stock = parseInt(req.body.stock, 10) || 1;
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
+
+        if (req.file && req.file.filename) {
+            req.body.thumbnail = `/uploads/${req.file.filename}`;
+        } else {
+            req.body.thumbnail = ''; // Default or empty if no file is uploaded
+        }
 
         req.body.category = req.body.category || 'Uncategorized';
-        req.body.tags = req.body.tags || [];
+        req.body.tags = Array.isArray(req.body.tags) ? req.body.tags : [];
         req.body.delete = false;
         req.body.reviews = [];
-        req.body.images = req.body.images || [];
+        req.body.images = Array.isArray(req.body.images) ? req.body.images : [];
         req.body.rating = 0;
 
         const product = new Product(req.body);
         await product.save();
-        console.log('Product created:', product);
+
         req.flash('success', 'Tạo sản phẩm thành công');
-        res.redirect(`${systemConfig.prefixAdmin}/products`);
+        return res.redirect(`${systemConfig.prefixAdmin}/products`);
     } catch (error) {
         console.error('Error creating product:', error);
-        res.status(500).send('Internal Server Error');
+        req.flash('error', 'Đã xảy ra lỗi khi tạo sản phẩm. Vui lòng thử lại.');
+        return res.status(500).redirect(`${systemConfig.prefixAdmin}/products/create`);
     }
 };
 
+// [GET] Edit a product in page
+module.exports.edit = async (req, res) => {
+    try {
+        const find = {
+            _id: req.params.id,
+            delete: false
+        }
+        const product = await Product.findOne(find);
+        if (!product) {
+            req.flash('error', 'Không tìm thấy sản phẩm');
+            return res.redirect(req.get('Referer') || '/');
+        }
+        res.render('admin/pages/products/edit', {
+            pageTitle: 'Trang chỉnh sửa sản phẩm',
+            product: product
+        });
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        req.flash('error', 'Đã xảy ra lỗi khi tìm sản phẩm. Vui lòng thử lại.');
+        return res.redirect(req.get('Referer') || '/');
+    }
+}
 
-
+//[PATCH] Edit a product
+module.exports.editPost = async (req, res) => {
+    try {
+        if (req.file) {
+            req.body.thumbnail = `/uploads/${req.file.filename}`;
+        }
+        if (!req.body.title) {
+            req.flash('error', 'Vui lòng nhập tên sản phẩmm');
+            return res.redirect(req.get('Referer') || '/');
+        }
+        req.body.price = parseFloat(req.body.price) || 0;
+        req.body.discountPercentage = parseFloat(req.body.discountPercentage) || 0;
+        req.body.stock = parseInt(req.body.stock, 10) || 1;
+        await Product.updateOne({_id: req.body.id}, req.body);
+        req.flash('success', 'Cập nhật sản phẩm thành công');
+        return res.redirect(req.get('Referer') || '/');
+    } catch (error) {
+        console.error('Error creating product:', error);
+        req.flash('error', 'Đã xảy ra lỗi khi thay đổi sản phẩm. Vui lòng thử lại.');
+        return res.redirect(req.get('Referer') || '/');
+    }
+}
 
 
 
