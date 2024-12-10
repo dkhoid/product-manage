@@ -8,10 +8,10 @@ mixin pagination(Pagination)
                         span.sr-only Previous
 
             -for (let i = 1; i <= Pagination.totalPage; i++)
-                - if (i === 1 || i === 2 || i === Pagination.totalPage || i === Pagination.totalPage - 1 || (i >= Pagination.currentPage - 1 && i <= Pagination.currentPage + 1))
-                    li(class=`page-item ${Pagination.page === i ? "active" : ""}`)
+                - if (i === 1 || i === 2 || i===3 || i === Pagination.totalPage || i === Pagination.totalPage - 1 || (i >= Pagination.currentPage - 2 && i <= Pagination.currentPage + 2))
+                    li(class=`page-item ${Pagination.currentPage === i ? " active" :""}`)
                         button(class='page-link' type='button' button-pagination=i)= i
-                - else if (i === 3 || i === Pagination.totalPage - 2)
+                - else if ((i === 4  && Pagination.currentPage >=8)|| (i === Pagination.totalPage - 3 && Pagination.currentPage <= Pagination.totalPage - 5))
                     li(class='page-item')
                         button(class='page-link' type='button' disabled)= '...'
 

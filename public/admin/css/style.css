@@ -69,7 +69,9 @@ html, body {
     width: 100%;
     overflow-x: hidden;
 }
-
+input.form-control{
+    max-width:70%;
+}
 div.message{
     position: fixed;
     right: 15px;

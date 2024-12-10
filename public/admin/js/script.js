@@ -1,3 +1,4 @@
+//handle action event or url event
 //change status bar
 const buttonStatus = document.querySelectorAll("[button-status]");
 if (buttonStatus.length > 0) {
@@ -142,6 +143,34 @@ if (uploadImage) {
             uploadImagePreview.style.display = 'none';
         }
     });
+}
+
+//sort
+const sort = document.querySelector('[sort]');
+if(sort) {
+    const sortSelect = sort.querySelector('[sort-select]');
+    const sortClear = sort.querySelector('[sort-clear]');
+    const url = new URL(window.location.href);
+    sortSelect.addEventListener('change', (e) => {
+        const value = e.target.value;
+        const [sortKey, sortOption] = value.split('-');
+        url.searchParams.set('sortKey', sortKey);
+        url.searchParams.set('sortOption', sortOption);
+        window.location.href = url.href;
+    });
+    sortClear.addEventListener('click', () => {
+        url.searchParams.delete('sortKey');
+        url.searchParams.delete('sortOption');
+        window.location.href = url.href;
+    });
+    const sortKey = url.searchParams.get('sortKey');
+    const sortOption = url.searchParams.get('sortOption');
+
+    if (sortKey && sortOption) {
+        sortString = `${sortKey}-${sortOption}`;
+        const option = sortSelect.querySelector(`option[value="${sortString}"]`);
+        option.selected = true;
+    }
 }
 
 

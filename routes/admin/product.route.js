@@ -22,4 +22,7 @@ router.post('/create', upload.single('thumbnail'), controller.createPost);
 router.get('/edit/:id', validate.createPost, controller.edit);
 
 router.patch('/edit/:id', upload.single('thumbnail'), validate.createPost, controller.editPost);
+
+router.get('/detail/:id', controller.detail);
+
 module.exports = router;

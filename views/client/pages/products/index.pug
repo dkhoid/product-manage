@@ -9,14 +9,14 @@ block main
 
         .row
             each item, index in products
-
                 .col-3.mb-3
                     .product-item
                         .inner-image
                             img(src=item.thumbnail, alt=item.title, loading="lazy")
                         .inner-content
                             h5= index+1
-                            h5.product-title #{item.title}
+                            h3.inner-title
+                                a(href=`/products/${item.slug}`)= item.title
                             p.product-price #{item.price}$
                             p.product-discount  #{(item.price - item.price * item.discountPercentage / 100).toFixed(2)}$
 

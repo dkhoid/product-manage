@@ -28,12 +28,18 @@ module.exports.index = async (req, res) => {
         };
         const pagination = paginationHelper(paginationOptions, req.query);
 
+        //sort
+        const sortObject = {};
+        if (req.query.sortKey && req.query.sortOption) {
+            sortObject[req.query.sortKey] = req.query.sortOption;
+        }
+        else sortObject.createdAt = -1;
+
         // Fetch products with applied filters and pagination
         const products = await Product.find(filter)
             .limit(pagination.limitItem)
             .skip(pagination.skipItem)
-            .sort({createdAt: -1});     //sort by createdAt in descending order
-
+            .sort(sortObject);
         // Render products page
         res.render('admin/pages/products/index', {
             pageTitle: 'Trang quản lý sản phẩm',
@@ -183,6 +189,28 @@ module.exports.editPost = async (req, res) => {
     } catch (error) {
         console.error('Error creating product:', error);
         req.flash('error', 'Đã xảy ra lỗi khi thay đổi sản phẩm. Vui lòng thử lại.');
+        return res.redirect(req.get('Referer') || '/');
+    }
+}
+
+module.exports.detail = async (req, res) => {
+    try {
+        const find = {
+            _id: req.params.id,
+            delete: false
+        }
+        const product = await Product.findOne(find);
+        if (!product) {
+            req.flash('error', 'Không tìm thấy sản phẩm');
+            return res.redirect(req.get('Referer') || '/');
+        }
+        res.render('admin/pages/products/detail', {
+            pageTitle: 'Trang chi tiết sản phẩm',
+            product: product
+        });
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        req.flash('error', 'Đã xảy ra lỗi khi xem sản phẩm. Vui lòng thử lại.');
         return res.redirect(req.get('Referer') || '/');
     }
 }

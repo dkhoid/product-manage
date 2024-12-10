@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
-const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+
 
 // Set up database connection
 database.connect(); // Connect to the database

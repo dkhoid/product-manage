@@ -1,6 +1,5 @@
 // Use: This file is used to paginate the data
 module.exports = (objectPagination, query) => {
-
     objectPagination.totalPage = Math.ceil(objectPagination.countProducts / objectPagination.limitItem);
     if (query.page) {
         let page = parseInt(query.page);
