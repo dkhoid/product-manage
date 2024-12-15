@@ -1,4 +1,4 @@
-
+testing/
 .idea/
 feature.txt
 # -----------------------------------------------------------------
@@ -123,3 +123,4 @@ Thumbs.db
 !.nvmrc
 !.phpcs.xml.dist
 .vercel
+/models/testing/

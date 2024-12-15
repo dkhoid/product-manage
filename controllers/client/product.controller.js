@@ -3,7 +3,8 @@ const Product = require('../../models/product.model');
 //{get} /products
 module.exports.index = async (req, res) => {
     const products = await Product.find({
-        delete: false
+        delete: false,
+        status:"Active"
     });
     res.render('client/pages/products/index', {
         title: 'Sản phẩm',
@@ -19,6 +20,7 @@ module.exports.detail = async (req, res) => {
             delete: false,
             status:'Active'
         });
+        console.log(product)
         res.render('client/pages/products/detail', {
             title: 'Sản phẩm',
             product: product

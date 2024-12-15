@@ -1,18 +1,19 @@
 extends ../../layouts/default
 
 block main
+
     if(product.title)
-        h1(class='mb-4')= product.title
+        h4(class='mb-4')= product.title
 
     if(product.price)
         div(class='mb-4')
             strong Giá:
             span= ' ' + product.price + `$`
 
-    if(product.discount)
+    if(product.discountPercentage)
         div(class='mb-4')
             strong Giảm giá:
-            span= ' ' + product.discount + `%`
+            span= product.discountPercentage
 
     if(product.stock)
         div(class='mb-4')
@@ -20,9 +21,7 @@ block main
             span= ' ' + product.stock
 
     if(product.description)
-        div(class='mb-4')
-            strong Mô tả:
-            span= ' ' + product.description
+        div(class='mb-4') !{product.description}
 
     if(product.thumbnail)
         div(class='mb-4')

@@ -23,7 +23,7 @@
 
 /*Body*/
 .body .sidebar{
-    width:150px;
+    width:170px;
     background: #1b2a33;
     color:#fff;
     position: fixed;
@@ -34,7 +34,7 @@
 .body .main {
     margin: 100px 15px 15px;
     position: relative;
-    left: 150px;
+    left: 170px;
     width: calc(100% - 120px);
 }
 
@@ -127,4 +127,9 @@ div.message{
     background: #f4f4f4;
     border-radius: 5px;
 }
+
+.tox-promotion {
+    display: none;
+}
+
 
