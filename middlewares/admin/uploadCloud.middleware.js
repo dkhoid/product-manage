@@ -1,12 +1,20 @@
 const cloudinary = require("../../config/cloudinary.config");
+const fs = require('fs');
 module.exports = async (req, res, next) => {
     try {
         if (!req.file) {
-            return res.status(400).send('No files were uploaded.');
+            console.log('No file was uploaded.');
         }
         const result = await cloudinary.uploader.upload(req.file.path);
         req.body[req.file.fieldname] = result.secure_url;
         console.log(req.body[req.file.fieldname]);
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+                console.error('Error deleting local file:', err);
+            } else {
+                console.log('Local file deleted:', req.file.path);
+            }
+        });
         next();
     } catch (error) {
         console.error('Error uploading file to cloud:', error);

@@ -28,7 +28,7 @@ const productsSchema = new mongoose.Schema({
     delete: Boolean,
     deletedAt: Date
 }, {timestamps: true});
-const Product = mongoose.model('Product', productsSchema, 'Products_data');
+const Product = mongoose.model('Product', productsSchema, 'products');
 
 
 

@@ -173,9 +173,6 @@ module.exports.edit = async (req, res) => {
 //[PATCH] Edit a product
 module.exports.editPost = async (req, res) => {
     try {
-        if (req.file) {
-            req.body.thumbnail = `/uploads/${req.file.filename}`;
-        }
         if (!req.body.title) {
             req.flash('error', 'Vui lòng nhập tên sản phẩmm');
             return res.redirect(req.get('Referer') || '/');
@@ -185,7 +182,7 @@ module.exports.editPost = async (req, res) => {
         req.body.stock = parseInt(req.body.stock, 10) || 1;
         await Product.updateOne({_id: req.body.id}, req.body);
         req.flash('success', 'Cập nhật sản phẩm thành công');
-        return res.redirect(req.get('Referer') || '/');
+        return res.redirect(`${systemConfig.prefixAdmin}/products`);
     } catch (error) {
         console.error('Error creating product:', error);
         req.flash('error', 'Đã xảy ra lỗi khi thay đổi sản phẩm. Vui lòng thử lại.');

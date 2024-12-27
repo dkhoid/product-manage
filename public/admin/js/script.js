@@ -12,7 +12,6 @@ if (buttonStatus.length > 0) {
         });
         button.addEventListener('click', () => {
             const status = button.getAttribute('button-status');
-            console.log(status);
             if (status) {
                 url.searchParams.set('status', status);
             } else {
