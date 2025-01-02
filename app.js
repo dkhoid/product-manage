@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const database = require('./config/database');
+const jwt = require('jsonwebtoken');
 
 // Middleware
 const bodyParser = require('body-parser');
@@ -15,15 +16,14 @@ const session = require('express-session');
 const flash = require('express-flash');
 
 
-
 // Set up database connection
 database.connect(); // Connect to the database
 
 // Middleware configurations
 app.use(methodOverride('_method')); // Enable method override for PUT and DELETE
-app.use(bodyParser.urlencoded({ extended: false })); // Parse form data
+app.use(bodyParser.urlencoded({extended: false})); // Parse form data
 app.use(cookieParser('IDONTKNOWHOWTOUSECOOKIE')); // Enable cookies
-app.use(session({secret: 'yourSecretKey', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }})); // Session management
+app.use(session({secret: 'yourSecretKey', resave: false, saveUninitialized: true, cookie: {maxAge: 60000}})); // Session management
 app.use(flash()); // Enable flash messages
 app.use(express.static('public')); // Serve static files
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));

@@ -1,0 +1,34 @@
+extends ../../layouts/default
+block main
+    h3 Danh mục sản phẩm
+    .card.mb-3
+        .card-header Danh mục vai trò
+            .card-body
+                .row
+                    .col-4
+                        a.btn.btn-outline-success(href=`${prefixAdmin}/role/create`) Thêm vai trò mới
+                    .col-8
+                        a.btn.btn-outline-danger(href='/admin/role/permissions') Cập nhật phân quyền của vai trò
+                        
+            table(class=`table table-hover table-sm` checkbox-multi)
+                thead
+                    tr
+                        th
+                            input(type="checkbox" name="check-all")
+                        th STT
+                        th Tên vai trò
+                        th Mô tả
+                        th Hành động
+
+                tbody
+                    each record, index in records
+                        tr
+                            td
+                                input(type="checkbox" name="id" value=`${record._id}`)
+                            td= index + 1
+                            td=record.title
+                            td !{record.description}
+                            td
+                                a.btn.btn-info.btn-sm.ml-1(href=`/admin/role/detail/${record._id}`) Xem
+                                a.btn.btn-warning.btn-sm.ml-1(href=`/admin/role/edit/${record._id}`) Sửa
+                                a.btn.btn-danger.btn-sm.ml-1(button-delete-role data-id = record._id) Xóa

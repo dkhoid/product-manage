@@ -3,39 +3,42 @@ extends ../../layouts/default
 block main
     .container.my-3
         .row
-            .col-12
+            .col-lg-6
+                if(product.thumbnail)
+                    .product-gallery
+                        img(src=product.thumbnail, alt=product.title, class="img-fluid rounded shadow")
+
+            .col-lg-6
                 if(product.title)
-                    h1(class='mb-4')= product.title
+                    h1(class='mb-3')= product.title
 
                 if(product.price)
-                    div(class='mb-4')
-                        strong Giá:
-                        span= ' ' + product.price + `$`
+                    div(class='mb-3')
+                        strong.text-muted Giá gốc:
+                        span.text-decoration-line-through.text-muted= ' ' + product.price + `$`
 
                 if(product.discountPercentage)
-                    div(class='mb-4')
-                        strong Giảm giá:
-                        span= ' ' + product.discountPercentage + `%`
+                    div(class='mb-3')
+                        strong.text-danger.font-weight-bold Giá giảm:
+                        span.h4.text-danger= ' ' + (product.price - product.price * product.discountPercentage / 100).toFixed(2) + `$`
 
                 if(product.stock)
-                    div(class='mb-4')
-                        strong Số lượng:
-                        span= ' ' + product.stock
+                    div(class='mb-3')
+                        strong Số lượng còn:
+                        span.text-success= ' ' + product.stock
 
                 if (product.description)
-                    div(class='mb-4')
+                    div(class='mb-3')
                         strong Mô tả:
-                        span!= product.description
-
-
-                if(product.thumbnail)
-                    div(class='mb-4')
-                        img(src=product.thumbnail, alt=product.title, width=200)
+                        p.text-justify= product.description
 
                 if(product.status)
-                    div(class='mb-4')
+                    div(class='mb-3')
                         strong Trạng thái:
                         if(product.status === 'Active')
                             span(class="badge badge-success") Hoạt động
                         else
                             span(class="badge badge-danger") Ngừng hoạt động
+
+                button.btn.btn-primary.btn-lg.mt-3 Add to Cart
+                button.btn.btn-outline-secondary.btn-lg.ml-3 Add to Wishlist

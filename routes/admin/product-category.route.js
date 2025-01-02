@@ -10,6 +10,12 @@ router.get('/', controller.index);
 
 router.get('/create', controller.create);
 
-// router.post('/create', upload.single('thumbnail'), controller.createPost);
+router.post('/create', controller.createPost);
+
+router.get('/edit/:id', controller.edit);
+
+router.get('/detail/:categoryName', controller.detail);
+
+router.delete('/delete/:categoryName', controller.delete);
 
 module.exports = router;

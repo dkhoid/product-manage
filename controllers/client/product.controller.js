@@ -20,14 +20,12 @@ module.exports.detail = async (req, res) => {
             delete: false,
             status:'Active'
         });
-        console.log(product)
         res.render('client/pages/products/detail', {
             title: 'Sản phẩm',
             product: product
         });
     }
     catch(err){
-        console.log(err);
         res.redirect('/products');
     }
 }

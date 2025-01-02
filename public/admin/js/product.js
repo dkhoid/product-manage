@@ -18,16 +18,18 @@ if (buttonChangeStatus.length > 0) {
 
 
 const buttonDelete = document.querySelectorAll("[button-delete]");
-if(buttonDelete.length>0){
+if (buttonDelete.length > 0) {
     const formDelete = document.querySelector("#form-delete");
     const path = formDelete.getAttribute('data-path');
-    buttonDelete.forEach(button =>{
-        button.addEventListener("click",()=>{
-            const isConfirm = confirm("Are you sure want to delete this product?");
-            if(isConfirm){
+
+    buttonDelete.forEach(button => {
+        button.addEventListener("click", () => {
+            const isConfirm = confirm("Are you sure you want to delete this category?");
+
+            if (isConfirm) {
                 const id = button.getAttribute("data-id");
-                formDelete.action = path + "/" + id + "/?_method=DELETE";
-                formDelete.submit();
+                formDelete.action = path + "/" + id + "/?_method=DELETE";  // Set form action for DELETE request
+                formDelete.submit();  // Submit the form
             }
         });
     });

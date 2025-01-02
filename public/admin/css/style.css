@@ -132,4 +132,7 @@ div.message{
     display: none;
 }
 
+#button-submit-permission{
+    display:inherit;
+}
 

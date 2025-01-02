@@ -1,23 +1,24 @@
 extends ../../layouts/default
 include ../../components/box-head
 
-block main 
+block main
     .container.my-3
         .row
             .col-12
                 +box-head('Danh sách sản phẩm')
 
-        .row
+        .row.g-4
             each item, index in products
-                .col-3.mb-3
-                    .product-item
+                .col-12.col-sm-6.col-md-4.col-lg-3
+                    .product-item.card.h-100.shadow-sm
                         .inner-image
-                            img(src=item.thumbnail, alt=item.title, loading="lazy")
-                        .inner-content
-                            h5= index+1
-                            h3.inner-title
+                            img.card-img-top(src=item.thumbnail, alt=item.title, loading="lazy")
+                        .card-body.d-flex.flex-column
+                            h5.text-secondary.mb-2= index + 1
+                            h3.inner-title.text-dark.h5
                                 a(href=`/products/${item.slug}`)= item.title
-                            p.product-price #{item.price}$
-                            p.product-discount  #{(item.price - item.price * item.discountPercentage / 100).toFixed(2)}$
-
-
+                            p.product-price.text-muted.text-decoration-line-through #{item.price}$
+                            p.product-discount.text-danger.h5.font-weight-bold #{(item.price - item.price * item.discountPercentage / 100).toFixed(2)}$
+                            .mt-auto
+                                button.btn.btn-primary.btn-sm Add to Cart
+                                button.btn.btn-outline-secondary.btn-sm.ml-2 Add to Wishlist

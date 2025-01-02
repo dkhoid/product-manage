@@ -4,20 +4,24 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --quiet --inspect app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "node --inspect app.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.2",
     "express-flash": "^0.0.2",
+    "express-jwt": "^8.5.1",
     "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.3",

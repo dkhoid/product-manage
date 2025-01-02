@@ -1,0 +1,37 @@
+extends ../../layouts/default
+
+block main
+    .container.my-5
+        .row.justify-content-center
+            .col-md-6
+                .card
+                    .card-header.text-center
+                        h3 Đăng Ký Tài Khoản
+                    .card-body
+                        form(action="/register" method="POST")
+                            .form-group.mb-3
+                                label(for="fullName") Họ và Tên:
+                                input#fullName.form-control(type="text", name="fullName", required=true placeholder="Nhập họ và tên")
+
+                            .form-group.mb-3
+                                label(for="email") Email:
+                                input#email.form-control(type="email", name="email", required=true placeholder="Nhập email")
+
+                            .form-group.mb-3
+                                label(for="phone") Số Điện Thoại:
+                                input#phone.form-control(type="tel", name="phone", placeholder="Nhập số điện thoại")
+
+                            .form-group.mb-3
+                                label(for="password") Mật Khẩu:
+                                input#password.form-control(type="password", name="password", required=true placeholder="Nhập mật khẩu")
+
+                            .form-group.mb-3
+                                label(for="confirmPassword") Xác Nhận Mật Khẩu:
+                                input#confirmPassword.form-control(type="password", name="confirmPassword", required=true placeholder="Nhập lại mật khẩu")
+
+                            .form-group.mb-3.text-center
+                                button.btn.btn-primary(type="submit") Đăng Ký
+
+                        .text-center.mt-3
+                            span Bạn đã có tài khoản?
+                            a(href="/login") Đăng Nhập
