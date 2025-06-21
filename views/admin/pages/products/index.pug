@@ -17,25 +17,21 @@ block main
             .row
                 .col-6
                     +filterStatus(filterStatus)
-                .col-6
+                .col-4
                     +search(keyword)
-
-    .card.mb-3
-        .card-header Săp xếp
-        .card-body
-            .row
                 .col-4
                     +sort()
+
     .card.mb-3
-        .card-header Danh sách sản phẩm
+        .card-header Thay đổi trạng thái
             .card-body
                 .row
-                    .col-8
+                    .col-4
                         +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
                     .col-4
                         a.btn.btn-outline-success(href=`${prefixAdmin}/products/create`) Thêm mới
 
-                table(class=`table table-hover table-sm` checkbox-multi)
+                table(class=`table table-hover table-sm table-striped` checkbox-multi col-table-name)
                     thead
                         tr
                             th
@@ -54,7 +50,7 @@ block main
                                     input(type="checkbox" name="id" value=`${product._id}`)
                                 td= index + 1
                                 td
-                                    img(src=product.thumbnail, alt=product.title, width=60)
+                                    img(src=product.thumbnail, alt=product.title, width=60 m)
 
                                 td= product.title
                                 td= product.price + `$`

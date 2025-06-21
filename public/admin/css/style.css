@@ -1,40 +1,40 @@
 /*Header*/
-.header{
-    background-color: #000000;
-    padding:10px 0;
-    position: fixed;
-    width:100%;
-    height:65px;
-    top:0;
-    z-index: 999;
-}
-.header .inner-logo a{
-    font-size:20px;
-    font-weight: 700;
-    color:#fff;
-    padding-left: 15px;
-}
-.col-3 .name {
-    color:#fff;
-    text-decoration: none;
-    font-size: large;
-}
+/*.header{*/
+/*    background-color: #000000;*/
+/*    padding:10px 0;*/
+/*    position: fixed;*/
+/*    width:100%;*/
+/*    height:65px;*/
+/*    top:0;*/
+/*    z-index: 999;*/
+/*}*/
+/*.header .inner-logo a{*/
+/*    font-size:20px;*/
+/*    font-weight: 700;*/
+/*    color:#fff;*/
+/*    padding-left: 15px;*/
+/*}*/
+/*.col-3 .name {*/
+/*    color:#fff;*/
+/*    text-decoration: none;*/
+/*    font-size: large;*/
+/*}*/
 /*End Header*/
 
 /*Body*/
 .body .sidebar{
-    width:170px;
-    background: #1b2a33;
+    width:240px;
+    background: #1a41ac;
     color:#fff;
     position: fixed;
-    top:65px;
     left:0;
-    height: calc(100% - 56px);
+    top:0;
+    height: 100%;
 }
 .body .main {
-    margin: 100px 15px 15px;
+    margin: 15px 15px;
     position: relative;
-    left: 170px;
+    left: 240px;
     width: calc(100% - 120px);
 }
 
@@ -45,19 +45,34 @@
 .sidebar .inner-menu ul{
     padding:0;
     margin:0;
-    list-style:none;
+    list-style-type:none;
 }
 .sidebar .inner-menu ul li a{
-    list-style:none;
     display: block;
-    padding:6px 10px;
-    border-bottom: 1px solid #515151;
+    color:#fff;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-bottom: 1px solid #76BBFF;
 }
 .sidebar .inner-menu ul li a:hover{
-    background: #3f5267;
+    background: #020f66;
+    color:#fff;
+}
+.link-active{
+    background: #020f66;
+    color:#fff;
+}
+.sidebar h1{
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 700;
     color:#fff;
 }
 /*End Sidebar*/
+
+
 thead tr th {
     background: #f4f4f4;
     color: #000;
@@ -72,12 +87,18 @@ html, body {
 input.form-control{
     max-width:70%;
 }
+
+
+
+
+/*alert*/
 div.message{
     position: fixed;
     right: 15px;
     top: 70px;
     z-index: 999;
 }
+
 [show-alert]{
     position: fixed;
     right: 15px;
@@ -114,12 +135,12 @@ div.message{
     font-weight: 600;
     border-radius: 70%;
 }
-
+/*end alert*/
 
 #form-create-product{
     width:inherit;
 }
-
+/*image upload*/
 [upload-image-preview]{
     height: 200px;
     border: 1px solid #ccc;
@@ -127,12 +148,3 @@ div.message{
     background: #f4f4f4;
     border-radius: 5px;
 }
-
-.tox-promotion {
-    display: none;
-}
-
-#button-submit-permission{
-    display:inherit;
-}
-

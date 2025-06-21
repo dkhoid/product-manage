@@ -12,6 +12,6 @@ module.exports = (app) => {
     app.use(PATH_ADMIN + '/products', productRoute);
     app.use(PATH_ADMIN + '/product-category', productCategoryRoute)
     app.use(PATH_ADMIN + '/role', roleRoute);
-    app.use(PATH_ADMIN + '/account', accountRoute);//đăng ký, đăng nhập, quản lý tài khoản.
+    app.use(PATH_ADMIN + '/account', accountRoute);
 
 };

@@ -38,6 +38,7 @@ module.exports.create = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }
+
 module.exports.createPost = async (req, res) => {
     try {
         const {categoryName} = req.body;
@@ -51,6 +52,7 @@ module.exports.createPost = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }
+
 module.exports.edit = async (req, res) => {
     try {
         const {id} = req.params;
@@ -64,9 +66,10 @@ module.exports.edit = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }
-module.exports.editPost = async (req, res) => {
-}
 
+module.exports.editPost = async (req, res) => {
+
+}
 module.exports.delete = async (req, res) => {
     try {
         const { categoryName } = req.params;
